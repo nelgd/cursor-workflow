@@ -1,0 +1,46 @@
+---
+description: Core engineering standards all agents must follow
+alwaysApply: true
+---
+
+## Code Changes
+
+- Prefer small, reviewable changes over large rewrites.
+- Do not change public APIs without documenting the impact in the PR description.
+- Reuse existing patterns in the codebase before introducing new ones.
+- Every change should be independently deployable and reversible where possible.
+
+## Testing
+
+- Run tests relevant to touched code before considering work complete.
+- New logic paths require at least one test covering the happy path and one covering an error case.
+- Do not delete or skip existing tests without explicit justification.
+
+## Database
+
+- For DB schema changes, include rollback SQL or migration-down steps.
+- Never run destructive DDL (DROP, TRUNCATE) without confirmation.
+- Index changes require a brief performance justification.
+
+## Frontend
+
+- Include accessibility checks (ARIA labels, keyboard nav, color contrast) for UI changes.
+- Test at mobile and desktop breakpoints.
+- Avoid layout shifts — measure CLS impact for visible changes.
+
+## Security
+
+- Never commit secrets, tokens, or credentials.
+- Sanitize all user input at the boundary where it enters the system.
+- Log security-relevant events (auth failures, permission changes).
+
+## Documentation
+
+- Update relevant docs (README, API docs, inline comments) when behavior changes.
+- Changelog entries are required for user-facing changes.
+
+## General
+
+- Prefer explicit over clever — readability wins.
+- Leave the codebase cleaner than you found it, but scope cleanup to nearby code only.
+- When uncertain, ask rather than guess.

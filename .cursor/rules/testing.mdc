@@ -1,0 +1,33 @@
+---
+description: Testing standards and conventions
+alwaysApply: true
+---
+
+## Test Structure
+
+- Tests live alongside the code they test (e.g., `foo_test.go` next to `foo.go`, `foo.test.ts` next to `foo.ts`).
+- Use table-driven tests where the language idiom supports it (Go, Rust, etc.).
+- Name tests to describe the behavior, not the implementation: `TestRefreshToken_ExpiresGracefully` not `TestFunc1`.
+
+## Coverage Expectations
+
+- New features: cover the happy path, at least one error path, and boundary conditions.
+- Bug fixes: add a regression test that fails without the fix and passes with it.
+- Refactors: existing tests must continue to pass; add tests only if coverage gaps are found.
+
+## Test Isolation
+
+- Tests must not depend on external services, network, or shared mutable state unless explicitly marked as integration tests.
+- Use mocks, fakes, or test doubles for external dependencies.
+- Each test must be independently runnable and order-independent.
+
+## Performance Tests
+
+- Performance-sensitive paths should have benchmark tests.
+- Document baseline numbers and acceptable thresholds in test comments.
+
+## Running Tests
+
+- Run the narrowest useful test scope first (single file, then package, then full suite).
+- Report exact pass/fail counts and any flaky behavior.
+- A failing test blocks the change — do not merge with known failures unless triaged and tracked.
