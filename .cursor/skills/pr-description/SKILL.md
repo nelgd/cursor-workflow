@@ -1,6 +1,7 @@
 ---
 name: pr-description
 description: Generates a PR description from the current branch's code changes using a standardized template.
+model: Claude
 ---
 
 ## Workflow: Generate a PR Description
